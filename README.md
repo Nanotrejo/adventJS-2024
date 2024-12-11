@@ -13,7 +13,7 @@ Cada día se presenta un nuevo reto, y este repositorio contiene mi implementaci
 
    ```bash
    gh repo clone Nanotrejo/adventJS-2024
-   cd adventJS-24
+   cd adventJS-2024
    ```
 
 2. Instala las dependencias:
