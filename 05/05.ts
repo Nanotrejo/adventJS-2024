@@ -4,19 +4,21 @@ type Shoe = {
 };
 
 function organizeShoes(shoes: { type: string; size: number }[]): number[] {
-  const sizeMap = new Map<number, { left: number; right: number }>();
+  const sizeMap = new Map<number, Record<string, number>>();
 
-  for (const shoe of shoes) {
-    const current = sizeMap.get(shoe.size) || { left: 0, right: 0 };
-    shoe.type === 'I' ? current.left++ : current.right++;
-    sizeMap.set(shoe.size, current);
+  for (const { type, size } of shoes) {
+    const count: Record<string, number> = sizeMap.get(size) || { I: 0, R: 0 };
+    count[type]++;
+    sizeMap.set(size, count);
   }
-  const pairedSizes: number[] = [];
-  for (const [size, { left, right }] of sizeMap) {
-    const repeat = Math.min(left, right);
-    repeat > 0 && pairedSizes.push(...Array(repeat).fill(size));
+
+  const result: number[] = [];
+  for (const [size, { I, R }] of sizeMap) {
+    const pairs = Math.min(I, R);
+    result.push(...Array(pairs).fill(size));
   }
-  return pairedSizes;
+
+  return result;
 }
 
 const shoes = [
@@ -37,6 +39,7 @@ const shoes2 = [
   { type: 'I', size: 38 },
   { type: 'R', size: 38 },
 ];
+console.log(organizeShoes(shoes2));
 // [38, 38]
 
 const shoes3 = [

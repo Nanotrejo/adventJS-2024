@@ -1,23 +1,17 @@
 function drawRace(indices: number[], length: number): string {
-  let result: Array<string> = [];
-  const indices_length = indices.length - 1;
-  indices.map((f, i) => {
-    let text = '';
-    const index = f >= 0 ? f : length - Math.abs(f);
-    if (indices_length !== i) {
-      text += ' '.repeat(indices_length - i);
-    }
-    const aux = '~'.repeat(length);
-    text +=
-      f === 0
-        ? aux
-        : aux.substring(0, index) + 'r' + aux.substring(index + 'r'.length);
-
-    text += ` /${i + 1}`;
-    result.push(text);
-  });
-  return result.join('\n');
+  return indices
+    .map((reindeer: number, index: number) => {
+      const draw: Array<string> = '~'.repeat(length).split('');
+      if (reindeer !== 0) {
+        const position: number = reindeer > 0 ? reindeer : length + reindeer;
+        draw[position] = 'r';
+      }
+      const spaces: number = indices.length - index - 1;
+      return draw.join('').padStart(length + spaces, ' ') + ` /${index + 1}`;
+    })
+    .join('\n');
 }
+
 
 console.log(drawRace([0, 5, -3], 10));
 /*
