@@ -23,12 +23,12 @@ console.log(generateGiftSets(['car', 'doll', 'puzzle']));
 //   ['car', 'doll', 'puzzle']
 // ]
 
-// console.log(generateGiftSets(['ball']))
+console.log(generateGiftSets(['ball']))
 // [
 //   ['ball']
 // ]
 
-// console.log(generateGiftSets(['game', 'pc']))
+console.log(generateGiftSets(['game', 'pc']))
 // [
 //   ['game'],
 //   ['pc'],
